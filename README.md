@@ -20,3 +20,15 @@ Memphis, shape007, Findmemphishere@gmail.com (P2410344)
 
 Joedon, JohnOriginalDude, cooljoedon@gmail.com (P2504337)
 
+
+
+Julia, julia-peh, ailujhepp@gmail.com (P2504887)
+
+
+
+Claire, CometFal1, CLAIRECHIAM.25@ichat.sp.edu.sg (P2527561)
+
+
+
+Darleen, Jboa3, Darleen.24@ichat.sp.edu.sg (P2412940)
+
