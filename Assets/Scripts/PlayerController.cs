@@ -1,59 +1,64 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using TMPro;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public Camera playerCamera;
 
+    // Self-explainory
     public float walkSpeed = 10f;
     public float runSpeed = 15f;
     public float jumpPower = 7f;
     public float gravity = 15f;
     public float currentSpeed;
+    public int speedBoost = 0;
     public float lookSpeed = 2f;
-    public float lookXLimit = 60f;
+    public float lookXLimit = 60f; // How far player can rotate up/down
 
+    // Health related stuff
     public int maxHealth = 100;
-    public int currentHealth; //Do health bar later
+    public int currentHealth;
 
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0f;
 
     private CharacterController characterController;
 
-    private bool isDead;
+    private bool canMove = true;
 
-    void Start()
+
+    private void Start()
     {
         currentHealth = maxHealth;
+        speedBoost = 0;
         characterController = GetComponent<CharacterController>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
     }
 
-    void Update()
+    private void Update()
     {
-        
+        Movement();
+        Look();
     }
 
+    // Player movment 
     private void Movement()
     {
-        //Get player's wasd movement
-        float inputVerticle = Input.GetAxis("Vertical");
+        // Gets player's "wasd" input 
+        float inputVertical = Input.GetAxis("Vertical");
         float inputHorizontal = Input.GetAxis("Horizontal");
 
-        //Get player's direction
+        // Gets player direction
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
-        //Allow player to combine verticle and horizontal movement
-        Vector3 movement = (forward * inputVerticle) + (right * inputHorizontal);
-
-        //Apply horizontal movement on z and x axis
-        moveDirection.x = movement.x * currentSpeed;
-        moveDirection.z = movement.z * currentSpeed;
+        // Allow player to combine verticle and horizontal input
+        Vector3 movement = (forward * inputVertical) + (right * inputHorizontal);
 
         // Prevents diagonal movement from being faster than normal movement
         if (movement.magnitude > 1f)
@@ -61,8 +66,14 @@ public class PlayerController : MonoBehaviour
             movement.Normalize();
         }
 
-        //Run
-        if (Input.GetKey(KeyCode.LeftShift))
+        // Prevent player from moving
+        if (!canMove)
+        {
+            currentSpeed = 0f;
+        }
+
+        // Shift-walk
+        else if (Input.GetKey(KeyCode.LeftShift))
         {
             currentSpeed = runSpeed;
         }
@@ -71,33 +82,45 @@ public class PlayerController : MonoBehaviour
             currentSpeed = walkSpeed;
         }
 
-        //Jump
-        if (Input.GetButton("Jump") & characterController.isGrounded)
+        // Apply horizontal movement on z and x axis
+        moveDirection.x = movement.x * currentSpeed;
+        moveDirection.z = movement.z * currentSpeed;
+
+        // Jump
+        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
             moveDirection.y = jumpPower;
         }
 
         if (characterController.isGrounded)
         {
-            if (moveDirection.y < 0)
+            // Prevent player from continously falling 
+            if (moveDirection.y < 0f)
             {
                 moveDirection.y = -2f;
             }
-
-            else
-            {
-                moveDirection.y -= gravity * Time.deltaTime;    
-            }
         }
+        else
+        {
+            // Apply gravity over time
+            moveDirection.y -= gravity * Time.deltaTime;
+        }
+        characterController.Move(moveDirection * Time.deltaTime);
     }
 
+    //
     private void Look()
     {
-        rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
-        rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
-        transform.rotation *= Quaternion.Euler(0f, Input.GetAxis("Mouse X") * lookSpeed, 0f);
+        // Stops function when player cannot move
+        if (!canMove)
+        {
+            return;
+        }
+
+        rotationX += -Input.GetAxis("Mouse Y") * lookSpeed; // Change verticle movement based on mouse speed
+        rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit); // Prevenets player from looking too far up/down
+        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0f, 0f); // Rotate camera up/down
+        transform.rotation *= Quaternion.Euler(0f, Input.GetAxis("Mouse X") * lookSpeed, 0f); // Rotate player left/right
     }
 }
-
 
