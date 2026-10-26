@@ -176,6 +176,27 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 999466c36f97d6c4396d391d5eb51b67, type: 3}
+--- !u!1 &71008259 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5512304884146467163, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}
+  m_PrefabInstance: {fileID: 8126235684223374331}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &71008264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71008259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754064e60f9d10e4da71ac4ded9a8382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RandomisedAttacks
+  readyToDrawCard: 0
+  readyToShoot: 0
+  cardShot: 0
+  generatedCardNumber: 0
 --- !u!1001 &286638621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -926,7 +947,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5512304884146467163, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 71008264}
   m_SourcePrefab: {fileID: 100100000, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
