@@ -3,20 +3,28 @@ using UnityEngine;
 
 public class RandomisedAttacks : MonoBehaviour
 {
-    //public GameObject projectilePrefab;
-    //public Transform shootPoint;
-    //public float projectileSpeed;
+    [Header("Projectile Settings")]
+    public GameObject projectilePrefab;
+    public Transform shootPoint;
+    public float projectileSpeed;
 
+    [Header("Card Handling")]
     public bool readyToDrawCard;
     public bool readyToShoot;
-    public bool cardShot;
     public int generatedCardNumber;
+    public GameObject card1Indicator;
+    public GameObject card2Indicator;
+    public GameObject card3indicator;
+    public float timeElapsed;
+    public float timeBeforeDiscard;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         readyToDrawCard = true;
         readyToShoot = false;
-        cardShot = false;
+        card1Indicator.SetActive(false);
+        card2Indicator.SetActive(false);
+        card3indicator.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,7 +34,7 @@ public class RandomisedAttacks : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                print("Card Drawn");
+                print("Drawn Card");
                 DrawCard();
                 readyToShoot = true;
                 readyToDrawCard = false;
@@ -37,11 +45,9 @@ public class RandomisedAttacks : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                cardShot = true;
                 Shoot();
                 print("Card Shot");
-                readyToDrawCard = true;
-                readyToShoot = false;
+                ResetHand();
             }
         }
         else
@@ -51,21 +57,48 @@ public class RandomisedAttacks : MonoBehaviour
     {
         generatedCardNumber = Random.Range(1 , 4);
         print("Card number is " + generatedCardNumber);
+        switch (generatedCardNumber)
+        {
+            case 1:
+                card1Indicator.SetActive(true);
+                break;
+            case 2:
+                card2Indicator.SetActive(true);
+                break;
+            case 3:
+                card3indicator.SetActive(true);
+                break;
+        }
     }
     IEnumerator CardHandler()
     {
-        yield return new WaitForSeconds(2f);
-        if (cardShot == false)
+        print("Discard Timer Started");
+        timeElapsed = 0f;
+        while (timeElapsed < timeBeforeDiscard)
         {
-            print("Card discarded");
-            readyToDrawCard = true;
-            readyToShoot = false;
+            if (readyToDrawCard == true)
+            {
+                print("Discard Timer Disabled");
+                yield break;
+            }
+            timeElapsed += Time.deltaTime;
+            yield return null;
         }
+        print("Card Discarded");
+        ResetHand();
     }
     void Shoot()
     {
-        //GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
-        //Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        //rb.linearVelocity = shootPoint.forward * projectileSpeed;
+        GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        rb.linearVelocity = shootPoint.forward * projectileSpeed;
+    }
+    void ResetHand()
+    {
+        readyToDrawCard = true;
+        readyToShoot = false;
+        card1Indicator.SetActive(false);
+        card2Indicator.SetActive(false);
+        card3indicator.SetActive(false);
     }
 }
