@@ -14,13 +14,13 @@ public class PlayerController : MonoBehaviour
     public float jumpPower = 7f;
     public float gravity = 15f;
     public float currentSpeed;
-    public int speedBoost = 0;
     public float lookSpeed = 2f;
     public float lookXLimit = 60f; // How far player can rotate up/down
 
     // Health related stuff
     public int maxHealth = 100;
     public int currentHealth;
+    public TMP_Text healthText;
 
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0f;
@@ -33,11 +33,12 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        speedBoost = 0;
         characterController = GetComponent<CharacterController>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        UpdateHealthUI();
     }
 
     private void Update()
@@ -122,5 +123,40 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0f, 0f); // Rotate camera up/down
         transform.rotation *= Quaternion.Euler(0f, Input.GetAxis("Mouse X") * lookSpeed, 0f); // Rotate player left/right
     }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        UpdateHealthUI();
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void UpdateHealthUI()
+    {
+        if (healthText != null)
+        {
+            healthText.text = "+" + currentHealth;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            TakeDamage(10);
+            Debug.Log("Enemy touched!");
+        }
+    }
+
+    private void Die()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+
 }
 

@@ -184,7 +184,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 5480631eb65e18548b60b3b29d27fdaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -514,11 +514,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   playerCamera: {fileID: 1430039198}
   walkSpeed: 6
-  runSpeed: 12
+  runSpeed: 15
   jumpPower: 7
   gravity: 10
+  currentSpeed: 0
+  speedBoost: 0
   lookSpeed: 2
   lookXLimit: 45
+  maxHealth: 100
+  currentHealth: 0
 --- !u!143 &1940679753
 CharacterController:
   m_ObjectHideFlags: 0
