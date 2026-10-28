@@ -148,7 +148,6 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             TakeDamage(10);
-            Debug.Log("Enemy touched!");
         }
     }
 
