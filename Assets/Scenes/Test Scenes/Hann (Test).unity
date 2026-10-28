@@ -193,10 +193,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754064e60f9d10e4da71ac4ded9a8382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RandomisedAttacks
+  projectilePrefab: {fileID: 0}
+  shootPoint: {fileID: 0}
+  projectileSpeed: 0
   readyToDrawCard: 0
   readyToShoot: 0
-  cardShot: 0
   generatedCardNumber: 0
+  card1Indicator: {fileID: 0}
+  card2Indicator: {fileID: 0}
+  card3indicator: {fileID: 0}
+  timeElapsed: 0
+  timeBeforeDiscard: 0
 --- !u!1001 &286638621
 PrefabInstance:
   m_ObjectHideFlags: 0
