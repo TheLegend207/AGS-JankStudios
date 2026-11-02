@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - End
   - Tracker
+  - MergeTest
   layers:
   - Default
   - TransparentFX
