@@ -149,7 +149,6 @@ GameObject:
   - component: {fileID: 8085759450354599319}
   - component: {fileID: 8091427708088191066}
   - component: {fileID: 1853166495708226503}
-  - component: {fileID: 6522282238993663345}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -217,26 +216,15 @@ MonoBehaviour:
   jumpPower: 7
   gravity: 10
   currentSpeed: 0
-  speedBoost: 0
   lookSpeed: 2
   lookXLimit: 45
   maxHealth: 100
   currentHealth: 0
---- !u!114 &6522282238993663345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5512304884146467163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb3c1ca31675d2489ebaceb3d75febf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BasicShooting
-  projectilePrefab: {fileID: 5378662547502011996, guid: f8c32561136a95c4fb29610f64b2d272, type: 3}
-  shootPoint: {fileID: 2893221035367708831}
+  healthText: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  netPrefab: {fileID: 0}
   projectileSpeed: 20
+  shootingPoint: {fileID: 0}
 --- !u!1 &7677266270040236672
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,9 +9,11 @@ public class EnemyPathFollower : MonoBehaviour
     public bool loopPath = true; 
 
     private int currentWaypointIndex = 0;
+    private CaptureSystem captureSystem;
 
     void Start()
     {
+        captureSystem = FindFirstObjectByType<CaptureSystem>();
         if (waypoints.Length > 0)
         {
             transform.position = waypoints[currentWaypointIndex].position;
@@ -20,6 +22,11 @@ public class EnemyPathFollower : MonoBehaviour
 
     void Update()
     {
+        if (captureSystem != null && captureSystem.IsMinigameActive())
+        {
+            return;
+        }
+
         if (waypoints.Length == 0) return;
 
         Transform targetWaypoint = waypoints[currentWaypointIndex];

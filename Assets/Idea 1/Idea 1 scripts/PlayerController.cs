@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using TMPro;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,6 +30,11 @@ public class PlayerController : MonoBehaviour
 
     private bool canMove = true;
 
+    public GameObject bulletPrefab;
+    public GameObject netPrefab;
+    public float projectileSpeed = 20f;
+    public Transform shootingPoint;
+
 
     private void Start()
     {
@@ -43,13 +49,32 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Movement();
-        Look();
+        if (FindFirstObjectByType<CaptureSystem>() == null ||
+        !FindFirstObjectByType<CaptureSystem>().IsMinigameActive())
+        {
+            Movement();
+            Look();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shoot();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Capture();
+        }
     }
 
     // Player movment 
     private void Movement()
     {
+        if (FindFirstObjectByType<CaptureSystem>().IsMinigameActive())
+        {
+            return;
+        }
+
         // Gets player's "wasd" input 
         float inputVertical = Input.GetAxis("Vertical");
         float inputHorizontal = Input.GetAxis("Horizontal");
@@ -122,6 +147,20 @@ public class PlayerController : MonoBehaviour
         rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit); // Prevenets player from looking too far up/down
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0f, 0f); // Rotate camera up/down
         transform.rotation *= Quaternion.Euler(0f, Input.GetAxis("Mouse X") * lookSpeed, 0f); // Rotate player left/right
+    }
+
+    void Shoot()
+    {
+        GameObject projectile = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        rb.linearVelocity = shootingPoint.forward * projectileSpeed;
+    }
+
+    void Capture()
+    {
+        GameObject projectile = Instantiate(netPrefab, shootingPoint.position, shootingPoint.rotation);
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        rb.linearVelocity = shootingPoint.forward * projectileSpeed;
     }
 
     public void TakeDamage(int damage)
