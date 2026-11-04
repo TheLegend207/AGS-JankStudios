@@ -65,5 +65,6 @@ public class EnemyPathFollower : MonoBehaviour
                 currentWaypointIndex = waypoints.Length - 1; 
             }
         }
-    }
+        
+   }    
 }
