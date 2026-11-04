@@ -1818,7 +1818,7 @@ MonoBehaviour:
   - {fileID: 122222136}
   - {fileID: 953426744}
   - {fileID: 763726366}
-  moveSpeed: 5
+  moveSpeed: 2
   arrivalThreshold: 0.4
   loopPath: 0
 --- !u!114 &1513869658

@@ -48,4 +48,9 @@ public class TowerMerging : MonoBehaviour
             }
         }
     }
+    public void upgrade()
+    {
+        Instantiate(mergedTower, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
 }

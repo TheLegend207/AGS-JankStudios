@@ -35,6 +35,8 @@ public class PlayerController2 : MonoBehaviour
     public float projectileSpeed = 20f;
     public Transform shootingPoint;
 
+    private TowerMerging towerMerging;
+
 
     private void Start()
     {
@@ -47,6 +49,7 @@ public class PlayerController2 : MonoBehaviour
 
     private void Update()
     {
+
         if (FindFirstObjectByType<CaptureSystem>() == null ||
         !FindFirstObjectByType<CaptureSystem>().IsMinigameActive())
         {
