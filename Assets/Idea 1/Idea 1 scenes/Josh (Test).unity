@@ -536,6 +536,14 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1998326198}
+    - target: {fileID: 1853166495708226503, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 5378662547502011996, guid: f8c32561136a95c4fb29610f64b2d272, type: 3}
+    - target: {fileID: 1853166495708226503, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}
+      propertyPath: shootingPoint
+      value: 
+      objectReference: {fileID: 1343714006}
     - target: {fileID: 5512304884146467163, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}
       propertyPath: m_Name
       value: Player
@@ -585,6 +593,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}
+--- !u!4 &1343714006 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2893221035367708831, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}
+  m_PrefabInstance: {fileID: 1343714005}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1998326196
 GameObject:
   m_ObjectHideFlags: 0

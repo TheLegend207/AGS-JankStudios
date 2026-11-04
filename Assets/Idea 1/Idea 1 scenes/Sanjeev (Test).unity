@@ -423,7 +423,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.24333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 96dfe3c60c8f777479aa3af404aa0d6a, type: 2}
   m_BuildHeightMesh: 0
@@ -435,6 +435,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1853166495708226503, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 5378662547502011996, guid: f8c32561136a95c4fb29610f64b2d272, type: 3}
+    - target: {fileID: 1853166495708226503, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}
+      propertyPath: shootingPoint
+      value: 
+      objectReference: {fileID: 1183479814}
     - target: {fileID: 5418810560194703437, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -503,6 +511,11 @@ PrefabInstance:
 --- !u!4 &1183479813 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8085759450354599319, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}
+  m_PrefabInstance: {fileID: 1183479812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1183479814 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2893221035367708831, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}
   m_PrefabInstance: {fileID: 1183479812}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2140623883

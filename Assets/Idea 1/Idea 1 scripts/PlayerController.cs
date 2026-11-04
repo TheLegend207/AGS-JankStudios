@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
     private bool canMove = true;
 
     public GameObject bulletPrefab;
-    public GameObject netPrefab;
     public float projectileSpeed = 20f;
     public Transform shootingPoint;
 
@@ -60,20 +59,11 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Capture();
-        }
     }
 
     // Player movment 
     private void Movement()
     {
-        if (FindFirstObjectByType<CaptureSystem>().IsMinigameActive())
-        {
-            return;
-        }
 
         // Gets player's "wasd" input 
         float inputVertical = Input.GetAxis("Vertical");
@@ -152,13 +142,6 @@ public class PlayerController : MonoBehaviour
     void Shoot()
     {
         GameObject projectile = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
-        Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        rb.linearVelocity = shootingPoint.forward * projectileSpeed;
-    }
-
-    void Capture()
-    {
-        GameObject projectile = Instantiate(netPrefab, shootingPoint.position, shootingPoint.rotation);
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.linearVelocity = shootingPoint.forward * projectileSpeed;
     }
