@@ -7,6 +7,7 @@ public class RandomisedAttacks : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform shootPoint;
     public float projectileSpeed;
+    public PlayerController playerController;
 
     [Header("Card Handling")]
     public bool readyToDrawCard;
@@ -15,6 +16,9 @@ public class RandomisedAttacks : MonoBehaviour
     public GameObject card1Indicator;
     public GameObject card2Indicator;
     public GameObject card3indicator;
+    public GameObject Indicator1;
+    public GameObject Indicator2;
+    public GameObject Indicator3;
     public float timeElapsed;
     public float timeBeforeDiscard;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,6 +29,9 @@ public class RandomisedAttacks : MonoBehaviour
         card1Indicator.SetActive(false);
         card2Indicator.SetActive(false);
         card3indicator.SetActive(false);
+        Indicator1.SetActive(false);
+        Indicator2.SetActive(false);
+        Indicator3.SetActive(false);
     }
 
     // Update is called once per frame
@@ -41,12 +48,21 @@ public class RandomisedAttacks : MonoBehaviour
                 StartCoroutine(CardHandler());
             }
         }
-        else if (readyToShoot == true)
+        else if (readyToShoot == true && generatedCardNumber == 1 || readyToShoot == true && generatedCardNumber == 3)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 Shoot();
                 print("Card Shot");
+                ResetHand();
+            }
+        }
+        else if (readyToShoot == true && generatedCardNumber == 2)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Heal();
+                print("Healed");
                 ResetHand();
             }
         }
@@ -61,12 +77,15 @@ public class RandomisedAttacks : MonoBehaviour
         {
             case 1:
                 card1Indicator.SetActive(true);
+                Indicator1.SetActive(true);
                 break;
             case 2:
                 card2Indicator.SetActive(true);
+                Indicator2.SetActive(true);
                 break;
             case 3:
                 card3indicator.SetActive(true);
+                Indicator3.SetActive(true);
                 break;
         }
     }
@@ -100,5 +119,12 @@ public class RandomisedAttacks : MonoBehaviour
         card1Indicator.SetActive(false);
         card2Indicator.SetActive(false);
         card3indicator.SetActive(false);
+        Indicator1.SetActive(false);
+        Indicator2.SetActive(false);
+        Indicator3.SetActive(false);
+    }
+    void Heal()
+    {
+        playerController.TakeDamage(-10);
     }
 }

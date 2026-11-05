@@ -30,11 +30,6 @@ public class PlayerController : MonoBehaviour
 
     private bool canMove = true;
 
-    public GameObject bulletPrefab;
-    public float projectileSpeed = 20f;
-    public Transform shootingPoint;
-
-
     private void Start()
     {
         currentHealth = maxHealth;
@@ -53,11 +48,6 @@ public class PlayerController : MonoBehaviour
         {
             Movement();
             Look();
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Shoot();
         }
     }
 
@@ -139,16 +129,14 @@ public class PlayerController : MonoBehaviour
         transform.rotation *= Quaternion.Euler(0f, Input.GetAxis("Mouse X") * lookSpeed, 0f); // Rotate player left/right
     }
 
-    void Shoot()
-    {
-        GameObject projectile = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
-        Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        rb.linearVelocity = shootingPoint.forward * projectileSpeed;
-    }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        if (currentHealth > maxHealth)
+        { 
+            currentHealth = maxHealth; 
+        }
         UpdateHealthUI();
 
         if (currentHealth <= 0)

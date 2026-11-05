@@ -153,3 +153,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01d3e22ac3392429415cbc7a3745a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
+  colour: {fileID: 2100000, guid: aa86cee5888842646a665f843ab41334, type: 2}

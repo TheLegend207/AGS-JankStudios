@@ -4,8 +4,7 @@ public class Bullet : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
-        //destroy bullet after 1 second(to be adjusted) to prevent unwanted/glitched bullets from staying in game
+    {        //destroy bullet after 1 second(to be adjusted) to prevent unwanted/glitched bullets from staying in game
         Destroy(gameObject, 1f);
     }
 
