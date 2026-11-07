@@ -54,7 +54,13 @@ public class CaptureSystem : MonoBehaviour
         // Successfully capture enemy
         if (captureProgress >= 1f)
         {
-            Destroy(targetEnemy);
+            EnemyBase capturedEnemy = targetEnemy.GetComponent<EnemyBase>();
+
+            if (capturedEnemy != null)
+            {
+                capturedEnemy.Die();
+            }
+
             EndMinigame();
         }
     }
@@ -75,7 +81,7 @@ public class CaptureSystem : MonoBehaviour
         minigameBarBackground.gameObject.SetActive(true);
 
         minigameBar.fillAmount = 0f;
-        minigameText.text = "CAPTURING: 0%";
+        minigameText.text = "Spam E to capture";
     }
 
     void EndMinigame()

@@ -9,9 +9,14 @@ public class LevelManager2 : MonoBehaviour
     public int maxBaseHealth = 100;
     public int currentBaseHealth;
     public Image healthBar;
+    public int currentCurrency;
+    public int enemyReward = 10;
+    public TMPro.TMP_Text currencyText;
     void Start()
     {
         currentBaseHealth = maxBaseHealth;
+        currentCurrency = 0;
+        currencyText.text = currentCurrency.ToString();
 
     }
 
@@ -36,7 +41,17 @@ public class LevelManager2 : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             TakeDamage(10);
-            Destroy(other.gameObject);
+
+            EnemyBase enemy = other.GetComponent<EnemyBase>();
+
+            if (enemy != null)
+            {
+                enemy.Die();
+            }
+            else
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 
@@ -65,6 +80,13 @@ public class LevelManager2 : MonoBehaviour
             healthBar.fillAmount = healthPercentage; // Change how full health bar is
             healthBar.color = healthColor; // Change bar color
         }
+    }
+
+    public void AddCurrency(int amount)
+    {
+        currentCurrency += amount;
+        Debug.Log("Currency updated: " + currentCurrency);
+        currencyText.text = currentCurrency.ToString();
     }
 
     private void GameOver()
