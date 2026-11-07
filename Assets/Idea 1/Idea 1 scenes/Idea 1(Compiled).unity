@@ -349,14 +349,19 @@ MonoBehaviour:
   readyToDrawCard: 0
   readyToShoot: 0
   generatedCardNumber: 0
-  card1Indicator: {fileID: 299085626}
-  card2Indicator: {fileID: 2136969880}
-  card3indicator: {fileID: 1516510801}
+  cardRedIndicator: {fileID: 299085626}
+  cardGreenIndicator: {fileID: 2136969880}
+  cardYellowindicator: {fileID: 1516510801}
   Indicator1: {fileID: 1721743290}
   Indicator2: {fileID: 359956242}
   Indicator3: {fileID: 1669045256}
   timeElapsed: 0
   timeBeforeDiscard: 2
+  cardRed: {fileID: 2100000, guid: 492b3494281429c468c4a43668afdacf, type: 2}
+  cardGreen: {fileID: 2100000, guid: fc0a6776d5c7c5741ade006e3a5a0f11, type: 2}
+  cardYellow: {fileID: 2100000, guid: 269eaf4da8157c34f9b11d3b1ddc637b, type: 2}
+  armSleeveHandler: {fileID: 348041931}
+  numberKeyPressed: 0
 --- !u!4 &291901829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8085759450354599319, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}
@@ -574,7 +579,15 @@ PrefabInstance:
     - target: {fileID: -6915365824178969812, guid: 144fda19f17b18a458ea245b136b4ffc, type: 3}
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
-      objectReference: {fileID: 2100000, guid: fc0a6776d5c7c5741ade006e3a5a0f11, type: 2}
+      objectReference: {fileID: 0}
+    - target: {fileID: -6915365824178969812, guid: 144fda19f17b18a458ea245b136b4ffc, type: 3}
+      propertyPath: 'm_Materials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -6915365824178969812, guid: 144fda19f17b18a458ea245b136b4ffc, type: 3}
+      propertyPath: 'm_Materials.Array.data[4]'
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: -6915365824178969812, guid: 144fda19f17b18a458ea245b136b4ffc, type: 3}
       propertyPath: 'm_BlendShapeWeights.Array.data[0]'
       value: 0
@@ -618,6 +631,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8898234932528242475, guid: 144fda19f17b18a458ea245b136b4ffc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 348041928}
+    - targetCorrespondingSourceObject: {fileID: -8898234932528242475, guid: 144fda19f17b18a458ea245b136b4ffc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 348041931}
   m_SourcePrefab: {fileID: 100100000, guid: 144fda19f17b18a458ea245b136b4ffc, type: 3}
 --- !u!4 &348041926 stripped
 Transform:
@@ -651,6 +667,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &348041931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348041927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6deafef3d711ef4aafb609f43efc065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ArmSleeveHandler
+  leather: {fileID: 2100000, guid: 2ea115905631bce43b51195b649e111c, type: 2}
+  metal: {fileID: 2100000, guid: 4a62bd4b7f8b3f14991805113124d34b, type: 2}
+  cardHolder3: {fileID: 0}
+  cardHolder2: {fileID: 0}
+  cardHolder1: {fileID: 0}
+  randomisedAttacks: {fileID: 291901828}
 --- !u!1 &359956242
 GameObject:
   m_ObjectHideFlags: 0

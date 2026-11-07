@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class RandomisedAttacks : MonoBehaviour
@@ -13,22 +14,27 @@ public class RandomisedAttacks : MonoBehaviour
     public bool readyToDrawCard;
     public bool readyToShoot;
     public int generatedCardNumber;
-    public GameObject card1Indicator;
-    public GameObject card2Indicator;
-    public GameObject card3indicator;
+    public GameObject cardRedIndicator;
+    public GameObject cardGreenIndicator;
+    public GameObject cardYellowindicator;
     public GameObject Indicator1;
     public GameObject Indicator2;
     public GameObject Indicator3;
     public float timeElapsed;
     public float timeBeforeDiscard;
+    public Material cardRed;
+    public Material cardGreen;
+    public Material cardYellow;
+    public ArmSleeveHandler armSleeveHandler;
+    public int numberKeyPressed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         readyToDrawCard = true;
         readyToShoot = false;
-        card1Indicator.SetActive(false);
-        card2Indicator.SetActive(false);
-        card3indicator.SetActive(false);
+        cardRedIndicator.SetActive(false);
+        cardGreenIndicator.SetActive(false);
+        cardYellowindicator.SetActive(false);
         Indicator1.SetActive(false);
         Indicator2.SetActive(false);
         Indicator3.SetActive(false);
@@ -41,11 +47,28 @@ public class RandomisedAttacks : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                print("Drawn Card");
+                generatedCardNumber = Random.Range(1, 4);
+                //print("Card number is " + generatedCardNumber);
+                //print("Drawn Card");
                 DrawCard();
-                readyToShoot = true;
-                readyToDrawCard = false;
-                StartCoroutine(CardHandler());
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                numberKeyPressed = 1;
+                drawFromArm();
+                DrawCard();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                numberKeyPressed = 2;
+                drawFromArm();
+                DrawCard();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                numberKeyPressed = 3;
+                drawFromArm();
+                DrawCard();
             }
         }
         else if (readyToShoot == true && generatedCardNumber == 1 || readyToShoot == true && generatedCardNumber == 3)
@@ -53,7 +76,25 @@ public class RandomisedAttacks : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Shoot();
-                print("Card Shot");
+                print("Card Used");
+                ResetHand();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                updateCard1();
+                print("Replaced Card 1");
+                ResetHand();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                updateCard2();
+                print("Replaced Card 2");
+                ResetHand();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                updateCard3();
+                print("Replaced Card 3");
                 ResetHand();
             }
         }
@@ -65,39 +106,59 @@ public class RandomisedAttacks : MonoBehaviour
                 print("Healed");
                 ResetHand();
             }
+            else if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                updateCard1();
+                print("Replaced Card 1");
+                ResetHand();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                updateCard2();
+                print("Replaced Card 2");
+                ResetHand();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                updateCard3();
+                print("Replaced Card 3");
+                ResetHand();
+            }
         }
         else
             print("error, draw and shoot are both unready");
     }
     void DrawCard()
     {
-        generatedCardNumber = Random.Range(1 , 4);
-        print("Card number is " + generatedCardNumber);
+        print(generatedCardNumber);
         switch (generatedCardNumber)
         {
             case 1:
-                card1Indicator.SetActive(true);
+                cardRedIndicator.SetActive(true);
                 Indicator1.SetActive(true);
                 break;
             case 2:
-                card2Indicator.SetActive(true);
+                cardGreenIndicator.SetActive(true);
                 Indicator2.SetActive(true);
                 break;
             case 3:
-                card3indicator.SetActive(true);
+                cardYellowindicator.SetActive(true);
                 Indicator3.SetActive(true);
                 break;
         }
+        readyToShoot = true;
+        readyToDrawCard = false;
+        StartCoroutine(CardHandler());
     }
     IEnumerator CardHandler()
     {
-        print("Discard Timer Started");
+        //print("Discard Timer Started");
         timeElapsed = 0f;
         while (timeElapsed < timeBeforeDiscard)
         {
             if (readyToDrawCard == true)
             {
-                print("Discard Timer Disabled");
+                //print("Discard Timer Disabled");
                 yield break;
             }
             timeElapsed += Time.deltaTime;
@@ -116,9 +177,9 @@ public class RandomisedAttacks : MonoBehaviour
     {
         readyToDrawCard = true;
         readyToShoot = false;
-        card1Indicator.SetActive(false);
-        card2Indicator.SetActive(false);
-        card3indicator.SetActive(false);
+        cardRedIndicator.SetActive(false);
+        cardGreenIndicator.SetActive(false);
+        cardYellowindicator.SetActive(false);
         Indicator1.SetActive(false);
         Indicator2.SetActive(false);
         Indicator3.SetActive(false);
@@ -126,5 +187,123 @@ public class RandomisedAttacks : MonoBehaviour
     void Heal()
     {
         playerController.TakeDamage(-10);
+    }
+
+    void updateCard1()
+    {
+        switch (generatedCardNumber)
+        {
+            case 1:
+                armSleeveHandler.cardHolder1 = cardRed;
+                break;
+            case 2:
+                armSleeveHandler.cardHolder1 = cardGreen;
+                break;
+            case 3:
+                armSleeveHandler.cardHolder1 = cardYellow;
+                break;
+        }
+        armSleeveHandler.updateSleeveCards();
+    }
+    void updateCard2()
+    {
+        switch (generatedCardNumber)
+        {
+            case 1:
+                armSleeveHandler.cardHolder2 = cardRed;
+                break;
+            case 2:
+                armSleeveHandler.cardHolder2 = cardGreen;
+                break;
+            case 3:
+                armSleeveHandler.cardHolder2 = cardYellow;
+                break;
+        }
+        armSleeveHandler.updateSleeveCards();
+    }
+    void updateCard3()
+    {
+        switch (generatedCardNumber)
+        {
+            case 1:
+                armSleeveHandler.cardHolder3 = cardRed;
+                break;
+            case 2:
+                armSleeveHandler.cardHolder3 = cardGreen;
+                break;
+            case 3:
+                armSleeveHandler.cardHolder3 = cardYellow;
+                break;
+        }
+        armSleeveHandler.updateSleeveCards();
+    }
+    void drawFromArm()
+    {
+        if (numberKeyPressed < 1 || numberKeyPressed > 3) 
+            return;
+        switch (numberKeyPressed)
+        {
+            case 1:
+                {
+                    if (armSleeveHandler.cardHolder1 == cardRed)
+                    {
+                        generatedCardNumber = 1;
+                        return;
+                    }
+                    else if (armSleeveHandler.cardHolder1 == cardGreen)
+                    {
+                        generatedCardNumber = 2;
+                        return;
+                    }
+                    else if (armSleeveHandler.cardHolder1 == cardYellow)
+                    {
+                        generatedCardNumber = 3;
+                        return;
+                    }
+                    else
+                        break;
+                }
+            case 2:
+                {
+                    if (armSleeveHandler.cardHolder2 == cardRed)
+                    {
+                        print("case2");
+                        generatedCardNumber = 1;
+                        return;
+                    }
+                    else if (armSleeveHandler.cardHolder2 == cardGreen)
+                    {
+                        generatedCardNumber = 2;
+                        return;
+                    }
+                    else if (armSleeveHandler.cardHolder2 == cardYellow)
+                    {
+                        generatedCardNumber = 3;
+                        return;
+                    }
+                    else
+                    break;
+                }
+            case 3:
+                {
+                    if (armSleeveHandler.cardHolder3 == cardRed)
+                    {
+                        generatedCardNumber = 1;
+                        return;
+                    }
+                    else if (armSleeveHandler.cardHolder3 == cardGreen)
+                    {
+                        generatedCardNumber = 2;
+                        return;
+                    }
+                    else if (armSleeveHandler.cardHolder3 == cardYellow)
+                    {
+                        generatedCardNumber = 3;
+                        return;
+                    }
+                    else
+                    break;
+                }
+        }
     }
 }
