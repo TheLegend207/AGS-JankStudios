@@ -635,9 +635,6 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthText: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  projectileSpeed: 20
-  shootingPoint: {fileID: 0}
 --- !u!143 &1940679753
 CharacterController:
   m_ObjectHideFlags: 0
