@@ -18,9 +18,9 @@ public class ArmSleeveHandler : MonoBehaviour
     void Start()
     {
         meshRenderer = GetComponent<SkinnedMeshRenderer>();
-        cardHolder1 = randomisedAttacks.cardRed;
-        cardHolder2 = randomisedAttacks.cardGreen;
-        cardHolder3 = randomisedAttacks.cardYellow;
+        cardHolder1 = leather;
+        cardHolder2 = leather;
+        cardHolder3 = leather;
 
         Material[] sleeveMaterials = new Material[5];
 

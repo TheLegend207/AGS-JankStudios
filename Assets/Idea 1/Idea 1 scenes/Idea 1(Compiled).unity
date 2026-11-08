@@ -360,8 +360,10 @@ MonoBehaviour:
   cardRed: {fileID: 2100000, guid: 492b3494281429c468c4a43668afdacf, type: 2}
   cardGreen: {fileID: 2100000, guid: fc0a6776d5c7c5741ade006e3a5a0f11, type: 2}
   cardYellow: {fileID: 2100000, guid: 269eaf4da8157c34f9b11d3b1ddc637b, type: 2}
+  cardEmpty: {fileID: 2100000, guid: 2ea115905631bce43b51195b649e111c, type: 2}
   armSleeveHandler: {fileID: 348041931}
   numberKeyPressed: 0
+  cardIsEmpty: 0
 --- !u!4 &291901829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8085759450354599319, guid: 43f69002cd3085f498a386df2fcf0e04, type: 3}

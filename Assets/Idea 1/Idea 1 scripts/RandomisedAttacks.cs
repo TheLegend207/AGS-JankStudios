@@ -25,8 +25,10 @@ public class RandomisedAttacks : MonoBehaviour
     public Material cardRed;
     public Material cardGreen;
     public Material cardYellow;
+    public Material cardEmpty;
     public ArmSleeveHandler armSleeveHandler;
     public int numberKeyPressed;
+    public bool cardIsEmpty;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -244,66 +246,69 @@ public class RandomisedAttacks : MonoBehaviour
         switch (numberKeyPressed)
         {
             case 1:
-                {
                     if (armSleeveHandler.cardHolder1 == cardRed)
                     {
                         generatedCardNumber = 1;
-                        return;
+                        armSleeveHandler.cardHolder1 = cardEmpty;
+                        break;
                     }
                     else if (armSleeveHandler.cardHolder1 == cardGreen)
                     {
                         generatedCardNumber = 2;
-                        return;
+                        armSleeveHandler.cardHolder1 = cardEmpty;
+                        break;
                     }
                     else if (armSleeveHandler.cardHolder1 == cardYellow)
                     {
                         generatedCardNumber = 3;
-                        return;
+                        armSleeveHandler.cardHolder1 = cardEmpty;
+                        break;
                     }
                     else
                         break;
-                }
             case 2:
-                {
                     if (armSleeveHandler.cardHolder2 == cardRed)
                     {
-                        print("case2");
                         generatedCardNumber = 1;
-                        return;
+                        armSleeveHandler.cardHolder2 = cardEmpty;
+                        break;
                     }
                     else if (armSleeveHandler.cardHolder2 == cardGreen)
                     {
                         generatedCardNumber = 2;
-                        return;
+                        armSleeveHandler.cardHolder2 = cardEmpty;
+                        break;
                     }
                     else if (armSleeveHandler.cardHolder2 == cardYellow)
                     {
                         generatedCardNumber = 3;
-                        return;
+                        armSleeveHandler.cardHolder2 = cardEmpty;
+                        break;
                     }
                     else
-                    break;
-                }
+                        break;
             case 3:
-                {
                     if (armSleeveHandler.cardHolder3 == cardRed)
                     {
                         generatedCardNumber = 1;
-                        return;
+                        armSleeveHandler.cardHolder3 = cardEmpty;
+                        break;
                     }
                     else if (armSleeveHandler.cardHolder3 == cardGreen)
                     {
                         generatedCardNumber = 2;
-                        return;
+                        armSleeveHandler.cardHolder3 = cardEmpty;
+                        break;
                     }
                     else if (armSleeveHandler.cardHolder3 == cardYellow)
                     {
                         generatedCardNumber = 3;
-                        return;
+                        armSleeveHandler.cardHolder3 = cardEmpty;
+                        break;
                     }
                     else
-                    break;
-                }
+                        break;
         }
+        armSleeveHandler.updateSleeveCards();
     }
 }
