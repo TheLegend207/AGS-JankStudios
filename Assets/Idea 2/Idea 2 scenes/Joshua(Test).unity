@@ -929,6 +929,9 @@ MonoBehaviour:
   maxBaseHealth: 100
   currentBaseHealth: 0
   healthBar: {fileID: 1664816779}
+  currentCurrency: 0
+  enemyReward: 10
+  currencyText: {fileID: 0}
 --- !u!1 &627308517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,6 +1231,8 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthText: {fileID: 0}
+  canMove: 1
+  canShoot: 1
   bulletPrefab: {fileID: 5378662547502011996, guid: f8c32561136a95c4fb29610f64b2d272, type: 3}
   netPrefab: {fileID: 1859086571624218947, guid: bff4efa8326f4c94c9519b177318ca0f, type: 3}
   projectileSpeed: 20

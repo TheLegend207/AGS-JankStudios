@@ -28,7 +28,8 @@ public class PlayerController2 : MonoBehaviour
 
     private CharacterController characterController;
 
-    private bool canMove = true;
+    public bool canMove = true;
+    public bool canShoot = true;
 
     public GameObject bulletPrefab;
     public GameObject netPrefab;
@@ -57,7 +58,7 @@ public class PlayerController2 : MonoBehaviour
             Look();
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canShoot == true)
         {
             Shoot();
         }
