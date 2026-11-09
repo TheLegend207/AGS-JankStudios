@@ -34,14 +34,14 @@ public class Spawner : MonoBehaviour
 
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
 
-        EnemyPathFollower follower = enemy.GetComponent<EnemyPathFollower>();
+        EnemyBase follower = enemy.GetComponent<EnemyBase>();
         if (follower != null)
         {
             follower.SetWaypoints(waypoints);
         }
         else
         {
-            Debug.LogWarning("Spawner: the enemy prefab has no EnemyPathFollower component!");
+            Debug.LogWarning("Spawner: the enemy prefab has no EnemyBase component!");
         }
     }
 
