@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HostileAI
   navAgent: {fileID: 1327917309}
-  playerTransform: {fileID: 1940679754}
+  playerTransform: {fileID: 0}
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 0
