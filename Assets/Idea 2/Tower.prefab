@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4157183184078854290}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -112,8 +112,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.440893, y: 2.141017, z: 3.8057427}
-  m_Center: {x: -0.096059084, y: 0.040604115, z: 0.37414742}
+  m_Size: {x: 6.8507853, y: 2.141017, z: 1.8341103}
+  m_Center: {x: 0.09033477, y: 0.040604115, z: 0.29617023}
 --- !u!114 &4419534140076647047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4840478552248896114}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -295,10 +295,11 @@ Transform:
   m_GameObject: {fileID: 5459066961500404047}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.39464307, y: -6.417, z: -6.312428}
+  m_LocalPosition: {x: 0.39464307, y: -6.09, z: -6.312428}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5956521044321683152}
   - {fileID: 7499456126835380628}
   - {fileID: 6209507198626397479}
   m_Father: {fileID: 0}
@@ -315,15 +316,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67cdeebb477eb314eb2e84b999b0b48d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrackByTag
-  targetTag: Enemy
+  range: 5.03
   rotationSpeed: 5
   smoothRotate: 1
-  range: 5.03
-  upgradeButton: {fileID: 0}
+  damagePerSecond: 10
+  interactKey: 101
+  interactRange: 3
+  lockCursorWhenClosed: 1
+  buttonPanel: {fileID: 0}
+  extraUI: []
+  upgradeRangeButton: {fileID: 0}
+  upgradeDamageButton: {fileID: 0}
+  sellbutton: {fileID: 0}
   rangeIncrease: 2
   maxRange: 30
+  damageIncrease: 5
+  maxDamage: 100
   resetWhenOutOfRange: 1
   resetSpeed: 2
+  levelManager2: {fileID: 0}
 --- !u!54 &7520219483103458033
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -351,3 +362,65 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 0
+--- !u!1001 &203324107139862812
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6522843234759201960}
+    m_Modifications:
+    - target: {fileID: 5799381116191676364, guid: f918f40f37e86264d8d4ed93326993c8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799381116191676364, guid: f918f40f37e86264d8d4ed93326993c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.759
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799381116191676364, guid: f918f40f37e86264d8d4ed93326993c8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.202
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799381116191676364, guid: f918f40f37e86264d8d4ed93326993c8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7313238
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799381116191676364, guid: f918f40f37e86264d8d4ed93326993c8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799381116191676364, guid: f918f40f37e86264d8d4ed93326993c8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68203044
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799381116191676364, guid: f918f40f37e86264d8d4ed93326993c8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799381116191676364, guid: f918f40f37e86264d8d4ed93326993c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799381116191676364, guid: f918f40f37e86264d8d4ed93326993c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799381116191676364, guid: f918f40f37e86264d8d4ed93326993c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570851682262371702, guid: f918f40f37e86264d8d4ed93326993c8, type: 3}
+      propertyPath: m_Name
+      value: 'Scrappy_Savalite '
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f918f40f37e86264d8d4ed93326993c8, type: 3}
+--- !u!4 &5956521044321683152 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5799381116191676364, guid: f918f40f37e86264d8d4ed93326993c8, type: 3}
+  m_PrefabInstance: {fileID: 203324107139862812}
+  m_PrefabAsset: {fileID: 0}

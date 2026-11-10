@@ -302,8 +302,22 @@ public class Tracking : MonoBehaviour
         // Hide the UI (and relock the cursor) right away instead of waiting for the end of the frame
         if (Selected == this)
             SetSelected(null);
-        print("Sold tower, adding 5 currency");
-        levelManager2.AddCurrency(5);
+
+        // Use the assigned manager, or find the one in the scene if this tower's slot is empty
+        if (levelManager2 == null)
+            levelManager2 = FindFirstObjectByType<LevelManager2>();
+
+        if (levelManager2 != null)
+        {
+            print("Sold tower, adding 5 currency");
+            levelManager2.AddCurrency(5);
+        }
+        else
+        {
+            Debug.LogWarning("Sell: no LevelManager2 found in the scene, so no currency was added.", this);
+        }
+
+        // The tower is always sold, even if the currency couldn't be added
         Destroy(gameObject);
     }
 
