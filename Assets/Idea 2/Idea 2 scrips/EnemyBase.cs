@@ -157,6 +157,17 @@ public class EnemyBase : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void Captured()
+    {
+        if (isDead == true)
+        {
+            return;
+        }
+
+        isDead = true;
+        Destroy(gameObject);
+    }
+
     void SetNextWaypoint()
     {
         currentWaypointIndex++;

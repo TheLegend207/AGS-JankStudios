@@ -48,8 +48,7 @@ public class CaptureSystem : MonoBehaviour
         minigameBar.fillAmount = captureProgress;
 
         // Update percentage text
-        minigameText.text = "CAPTURING: "
-            + Mathf.RoundToInt(captureProgress * 100) + "%";
+        minigameText.text = "Spam E to capture";
 
         // Successfully capture enemy
         if (captureProgress >= 1f)
@@ -58,7 +57,7 @@ public class CaptureSystem : MonoBehaviour
 
             if (capturedEnemy != null)
             {
-                capturedEnemy.Die();
+                capturedEnemy.Captured();
             }
 
             EndMinigame();

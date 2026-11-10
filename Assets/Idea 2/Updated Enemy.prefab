@@ -173,6 +173,7 @@ MonoBehaviour:
   maxDamage: 100
   resetWhenOutOfRange: 1
   resetSpeed: 2
+  levelManager2: {fileID: 0}
 --- !u!114 &2090198781471911260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9090abd7c969637429fcef2be09e98c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
-  currencyReward: 10
+  currencyReward: 30
   waypoints:
   - {fileID: 4315395586505466752, guid: 9e59b9e1b15c33344bb8e50681275b80, type: 3}
   - {fileID: 5599850280885348156, guid: c2734657a9f6bb745a0bda86564c6507, type: 3}
