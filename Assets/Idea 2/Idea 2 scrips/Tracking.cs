@@ -60,7 +60,9 @@ public class Tracking : MonoBehaviour
     private Quaternion initialLocalRotation;
 
     // Snapshot of the enemy list, so enemies dying mid-loop can't break the loop
-    private readonly List<EnemyPathFollower> enemyBuffer = new List<EnemyPathFollower>();
+    private readonly List<EnemyBase> enemyBuffer = new List<EnemyBase>();
+
+    public LevelManager2 levelManager2;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void ResetStatics()
@@ -300,7 +302,8 @@ public class Tracking : MonoBehaviour
         // Hide the UI (and relock the cursor) right away instead of waiting for the end of the frame
         if (Selected == this)
             SetSelected(null);
-
+        print("Sold tower, adding 5 currency");
+        levelManager2.AddCurrency(5);
         Destroy(gameObject);
     }
 
@@ -311,9 +314,9 @@ public class Tracking : MonoBehaviour
 
         // Copy the live list once per frame, then work from the copy
         enemyBuffer.Clear();
-        enemyBuffer.AddRange(EnemyPathFollower.All);
+        enemyBuffer.AddRange(EnemyBase.All);
 
-        EnemyPathFollower target = FindNearestEnemyInRange();
+        EnemyBase target = FindNearestEnemyInRange();
 
         if (target == null)
         {
@@ -323,15 +326,14 @@ public class Tracking : MonoBehaviour
 
         // Track and damage only the nearest enemy
         RotateToward(target.transform.position);
-        target.TakeDamage(damagePerSecond * Time.deltaTime);
     }
 
-    EnemyPathFollower FindNearestEnemyInRange()
+    EnemyBase FindNearestEnemyInRange()
     {
-        EnemyPathFollower nearest = null;
+        EnemyBase nearest = null;
         float nearestSqr = range * range;
 
-        foreach (EnemyPathFollower enemy in enemyBuffer)
+        foreach (EnemyBase enemy in enemyBuffer)
         {
             if (enemy == null) continue;
 
