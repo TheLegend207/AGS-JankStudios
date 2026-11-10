@@ -12,12 +12,15 @@ public class LevelManager2 : MonoBehaviour
     public int currentCurrency;
     public int enemyReward = 10;
     public TMPro.TMP_Text currencyText;
+    public int currentNets;
+    public TMPro.TMP_Text currentNetsText;
     void Start()
     {
         currentBaseHealth = maxBaseHealth;
         currentCurrency = 0;
         currencyText.text = currentCurrency.ToString();
-
+        currentNets = 3;
+        UpdateNetsUI(); 
     }
 
     void Update()
@@ -46,7 +49,7 @@ public class LevelManager2 : MonoBehaviour
 
             if (enemy != null)
             {
-                enemy.Die();
+                enemy.Captured();
             }
             else
             {
@@ -87,6 +90,32 @@ public class LevelManager2 : MonoBehaviour
         currentCurrency += amount;
         Debug.Log("Currency updated: " + currentCurrency);
         currencyText.text = currentCurrency.ToString();
+    }
+
+    public bool UseNet()
+    {
+        if (currentNets <= 0)
+        {
+            currentNets = 0;
+            UpdateNetsUI();
+            Debug.Log("No nets remaining!");
+            return false;
+        }
+
+        currentNets--;
+        UpdateNetsUI();
+
+        Debug.Log("Nets remaining: " + currentNets);
+
+        return true;
+    }
+
+    private void UpdateNetsUI()
+    {
+        if (currentNetsText != null)
+        {
+            currentNetsText.text = currentNets.ToString();
+        }
     }
 
     private void GameOver()

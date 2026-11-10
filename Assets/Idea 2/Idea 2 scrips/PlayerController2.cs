@@ -36,6 +36,7 @@ public class PlayerController2 : MonoBehaviour
     public float projectileSpeed = 20f;
     public Transform shootingPoint;
 
+    public LevelManager2 levelManager;
     private TowerMerging towerMerging;
 
 
@@ -46,6 +47,11 @@ public class PlayerController2 : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (levelManager == null)
+        {
+            levelManager = FindFirstObjectByType<LevelManager2>();
+        }
     }
 
     private void Update()
@@ -159,9 +165,33 @@ public class PlayerController2 : MonoBehaviour
 
     void Capture()
     {
-        GameObject projectile = Instantiate(netPrefab, shootingPoint.position, shootingPoint.rotation);
+        if (levelManager == null)
+        {
+            Debug.LogError("LevelManager2 is not assigned!");
+            return;
+        }
+
+        if (levelManager.currentNets <= 0)
+        {
+            Debug.Log("No nets available!");
+            return;
+        }
+
+        if (!levelManager.UseNet())
+            return;
+
+        GameObject projectile = Instantiate(
+            netPrefab,
+            shootingPoint.position,
+            shootingPoint.rotation
+        );
+
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        rb.linearVelocity = shootingPoint.forward * projectileSpeed;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = shootingPoint.forward * projectileSpeed;
+        }
     }
 }
 
