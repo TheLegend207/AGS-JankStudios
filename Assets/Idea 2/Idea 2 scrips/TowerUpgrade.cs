@@ -25,6 +25,7 @@ public class TowerUpgrade : MonoBehaviour
             if (upgradeButtonsGroup != null)
             {
                 playerController2.canShoot = !playerController2.canShoot;
+                playerController2.canLook = !playerController2.canLook;
                 // Toggle the buttons (turns them on if off, or off if on)
                 bool currentStatus = upgradeButtonsGroup.activeSelf;
                 upgradeButtonsGroup.SetActive(!currentStatus);
@@ -59,6 +60,7 @@ public class TowerUpgrade : MonoBehaviour
         {
             isPlayerInZone = false;
 
+            playerController2.canLook = true;
             playerController2.canShoot = true;
             if (interactionText != null) interactionText.gameObject.SetActive(false);
             if (upgradeButtonsGroup != null) upgradeButtonsGroup.SetActive(false);

@@ -28,6 +28,7 @@ public class PlayerController2 : MonoBehaviour
 
     private CharacterController characterController;
 
+    public bool canLook = true;
     public bool canMove = true;
     public bool canShoot = true;
 
@@ -37,11 +38,15 @@ public class PlayerController2 : MonoBehaviour
     public Transform shootingPoint;
 
     public LevelManager2 levelManager;
-    private TowerMerging towerMerging;
 
+    public Transform towerDeployPoint;
+    public GameObject towerDeployVisual;
+    public GameObject towerPrefab;
+    public bool towerPlacement;
 
     private void Start()
     {
+        towerDeployVisual.SetActive(false);
         currentHealth = maxHealth;
         characterController = GetComponent<CharacterController>();
 
@@ -72,6 +77,18 @@ public class PlayerController2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             Capture();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            PlacingTower();
+        }
+        if (Input.GetKeyDown(KeyCode.Q) && towerPlacement == true)
+        {
+            ExitPlacement();
+        }
+        if (Input.GetMouseButtonDown(0) && towerPlacement == true)
+        {
+            PlaceTower();
         }
     }
 
@@ -150,6 +167,11 @@ public class PlayerController2 : MonoBehaviour
             return;
         }
 
+        if(!canLook)
+        {
+            return;
+        }
+
         rotationX += -Input.GetAxis("Mouse Y") * lookSpeed; // Change verticle movement based on mouse speed
         rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit); // Prevenets player from looking too far up/down
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0f, 0f); // Rotate camera up/down
@@ -192,6 +214,27 @@ public class PlayerController2 : MonoBehaviour
         {
             rb.linearVelocity = shootingPoint.forward * projectileSpeed;
         }
+    }
+    void PlacingTower()
+    {
+        canShoot = false;
+        towerPlacement = true;
+        towerDeployVisual.SetActive(true);
+    }
+    void PlaceTower()
+    {
+        print("deployed tower");
+        GameObject tower = Instantiate(towerPrefab, towerDeployPoint.position, towerDeployPoint.rotation);
+        towerDeployVisual.SetActive(false);
+        canShoot = true;
+        towerPlacement = false;
+    }
+    void ExitPlacement()
+    {
+        print("exited spawn menu");
+        canShoot = true;
+        towerPlacement = false;
+        towerDeployVisual.SetActive(false);
     }
 }
 

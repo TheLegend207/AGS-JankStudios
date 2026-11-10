@@ -316,10 +316,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67cdeebb477eb314eb2e84b999b0b48d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrackByTag
+  playerController2: {fileID: 3535381256093394505, guid: 781cbe3794d3d8b4dbb01705d73cd168, type: 3}
   range: 5.03
   rotationSpeed: 5
   smoothRotate: 1
-  damagePerSecond: 10
+  damage: 10
+  timeBeforeNextAttack: 0
   interactKey: 101
   interactRange: 3
   lockCursorWhenClosed: 1
@@ -330,7 +332,7 @@ MonoBehaviour:
   sellbutton: {fileID: 0}
   rangeIncrease: 2
   maxRange: 30
-  damageIncrease: 5
+  damageIncrease: 10
   maxDamage: 100
   resetWhenOutOfRange: 1
   resetSpeed: 2

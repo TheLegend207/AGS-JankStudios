@@ -6,13 +6,16 @@ using System.Collections.Generic;
 
 public class Tracking : MonoBehaviour
 {
+
+    public PlayerController2 playerController2;
     //tracking
     public float range = 10f;
     public float rotationSpeed = 5.0f;
     public bool smoothRotate = true;
 
     //damage
-    public float damagePerSecond = 10f;
+    public int damage = 10;
+    public float timeBeforeNextAttack;
 
     //interact
     public KeyCode interactKey = KeyCode.E;
@@ -31,8 +34,8 @@ public class Tracking : MonoBehaviour
     //upgrades
     public float rangeIncrease = 2f;
     public float maxRange = 30f;
-    public float damageIncrease = 5f;
-    public float maxDamage = 100f;
+    public int damageIncrease = 5;
+    public int maxDamage = 100;
 
     //resetpos
     public bool resetWhenOutOfRange = true;
@@ -154,7 +157,7 @@ public class Tracking : MonoBehaviour
         Selected.UpgradeDamage();
 
         // Temporary: confirms the button worked. Delete once it works.
-        Debug.Log($"Damage upgraded on {Selected.name}: now {Selected.damagePerSecond}", Selected);
+        Debug.Log($"Damage upgraded on {Selected.name}: now {Selected.damage}", Selected);
     }
 
     static void SellSelected()
@@ -294,7 +297,7 @@ public class Tracking : MonoBehaviour
 
     public void UpgradeDamage()
     {
-        damagePerSecond = Mathf.Min(damagePerSecond + damageIncrease, maxDamage);
+        damage = Mathf.Min(damage + damageIncrease, maxDamage);
     }
 
     public void Sell()
@@ -309,6 +312,8 @@ public class Tracking : MonoBehaviour
 
         if (levelManager2 != null)
         {
+            playerController2.canLook = true;
+            playerController2.canShoot = true;
             print("Sold tower, adding 5 currency");
             levelManager2.AddCurrency(5);
         }
@@ -340,6 +345,12 @@ public class Tracking : MonoBehaviour
 
         // Track and damage only the nearest enemy
         RotateToward(target.transform.position);
+        timeBeforeNextAttack += Time.deltaTime;
+        if (timeBeforeNextAttack >= 1f)
+        {
+            target.TakeDamage(damage);
+            timeBeforeNextAttack -= 1f;
+        }
     }
 
     EnemyBase FindNearestEnemyInRange()

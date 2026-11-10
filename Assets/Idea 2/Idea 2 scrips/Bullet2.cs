@@ -29,7 +29,7 @@ public class Bullet2 : MonoBehaviour
         }
         //prevent bullet being deleted when colliding with player
         //(aka when spawning, so we dont have to force the shoot point forwards to avoid bullet deletion)
-        else if (other.gameObject.CompareTag("Player"))
+        else if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Tracker"))
         {
             return;
         }
