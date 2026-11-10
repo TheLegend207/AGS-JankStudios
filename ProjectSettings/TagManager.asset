@@ -8,6 +8,7 @@ TagManager:
   - End
   - Tracker
   - MergeTest
+  - Room Detector
   layers:
   - Default
   - TransparentFX
