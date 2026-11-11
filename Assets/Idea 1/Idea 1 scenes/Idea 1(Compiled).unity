@@ -3187,7 +3187,7 @@ MonoBehaviour:
   chaseSpeed: 4
   patrolRadius: 10
   visionRange: 15
-  engagementRange: 0
+  engagementRange: 2
   maxHealth: 100
   chaseTurnSpeed: 720
   animator: {fileID: 560195294}
@@ -4596,7 +4596,7 @@ MonoBehaviour:
   chaseSpeed: 4
   patrolRadius: 10
   visionRange: 15
-  engagementRange: 0
+  engagementRange: 2
   maxHealth: 100
   chaseTurnSpeed: 720
   animator: {fileID: 839329918}
@@ -6122,6 +6122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcaab8a0bf4b400409abc78d354f6635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkeletonAI
+  rb: {fileID: 0}
 --- !u!95 &1177682466
 Animator:
   serializedVersion: 7
@@ -9781,7 +9782,7 @@ MonoBehaviour:
   chaseSpeed: 4
   patrolRadius: 10
   visionRange: 11.5
-  engagementRange: 0
+  engagementRange: 2
   maxHealth: 100
   chaseTurnSpeed: 720
   animator: {fileID: 1495321442}
@@ -11620,7 +11621,7 @@ MonoBehaviour:
   chaseSpeed: 4
   patrolRadius: 10
   visionRange: 13
-  engagementRange: 0
+  engagementRange: 2
   maxHealth: 100
   chaseTurnSpeed: 720
   animator: {fileID: 1953247223}
@@ -20331,6 +20332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcaab8a0bf4b400409abc78d354f6635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkeletonAI
+  rb: {fileID: 0}
 --- !u!95 &9042997255157837518
 Animator:
   serializedVersion: 7

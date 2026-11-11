@@ -6,23 +6,21 @@ public class SkeletonAI : MonoBehaviour
 
 
     private Animator anim;
+    public Rigidbody rb;
 
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float currentSpeed = GetComponent<Rigidbody>().linearVelocity.magnitude;
-        anim.SetFloat("speed", currentSpeed);
+        float currentSpeed = rb.linearVelocity.magnitude;
+        anim.SetFloat("speed", 10f);
 
 
-        if (Input.GetKeyDown(KeyCode.Space)) // Temporary manual test button
-        {
-            anim.SetTrigger("skele attack");
-        }
     }
 }

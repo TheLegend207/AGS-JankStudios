@@ -64,6 +64,7 @@ public class HostileAI : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         FindPatrolPoint();
     }
 
@@ -184,6 +185,7 @@ public class HostileAI : MonoBehaviour
     {
         if (navAgent != null && navAgent.enabled)
         {
+            animator.SetTrigger("Attack");
             navAgent.isStopped = true;
         }
         

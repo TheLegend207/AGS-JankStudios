@@ -553,12 +553,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HostileAI
   navAgent: {fileID: 1327917309}
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 1940679754}
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  patrolSpeed: 2.5
-  chaseSpeed: 9
+  patrolSpeed: 0
+  chaseSpeed: 0
   patrolRadius: 10
   visionRange: 20
   engagementRange: 10
@@ -579,6 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcaab8a0bf4b400409abc78d354f6635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkeletonAI
+  rb: {fileID: 0}
 --- !u!195 &1327917309
 NavMeshAgent:
   m_ObjectHideFlags: 0
