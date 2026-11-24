@@ -43,12 +43,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (FindFirstObjectByType<CaptureSystem>() == null ||
-        !FindFirstObjectByType<CaptureSystem>().IsMinigameActive())
-        {
             Movement();
             Look();
-        }
     }
 
     // Player movment 
