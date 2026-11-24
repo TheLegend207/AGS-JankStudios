@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -30,6 +31,13 @@ public class RandomisedAttacks : MonoBehaviour
     public int numberKeyPressed;
     public bool cardIsEmpty;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [Header("Mana system")]
+    public int maxMana = 100;
+    public int currentMana;
+    public float manaRegen;
+    public float manaRegenTimer;
+    public TMP_Text manaText;
     void Start()
     {
         readyToDrawCard = true;
@@ -40,12 +48,24 @@ public class RandomisedAttacks : MonoBehaviour
         Indicator1.SetActive(false);
         Indicator2.SetActive(false);
         Indicator3.SetActive(false);
+        currentMana = maxMana;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (readyToDrawCard == true)
+        manaRegenTimer += Time.deltaTime;
+        if(manaRegenTimer > manaRegen)
+        {
+            manaRegenTimer -= manaRegen;
+            currentMana += 1;
+            if (currentMana > maxMana)
+            {
+                currentMana = maxMana;
+            }
+            UpdateManaUI();
+        }
+        if (readyToDrawCard == true && currentMana >10)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -174,6 +194,8 @@ public class RandomisedAttacks : MonoBehaviour
         GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.linearVelocity = shootPoint.forward * projectileSpeed;
+        currentMana -= 10;
+        UpdateManaUI();
     }
     void ResetHand()
     {
@@ -189,6 +211,8 @@ public class RandomisedAttacks : MonoBehaviour
     void Heal()
     {
         playerController.TakeDamage(-10);
+        currentMana -= 10;
+        UpdateManaUI();
     }
 
     void updateCard1()
@@ -310,5 +334,12 @@ public class RandomisedAttacks : MonoBehaviour
                         break;
         }
         armSleeveHandler.updateSleeveCards();
+    }
+    private void UpdateManaUI()
+    {
+        if (manaText != null)
+        {
+            manaText.text = "" + currentMana;
+        }
     }
 }
