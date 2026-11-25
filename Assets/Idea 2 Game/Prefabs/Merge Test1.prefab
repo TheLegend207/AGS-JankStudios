@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5504659436411498496}
   - component: {fileID: 359903833467264539}
-  - component: {fileID: 6647711266646986389}
   - component: {fileID: 8701322426638432608}
   m_Layer: 0
   m_Name: Merge Test1
@@ -58,19 +57,6 @@ CapsuleCollider:
   m_Height: 6.348552
   m_Direction: 1
   m_Center: {x: -0.119702935, y: 0.023813415, z: -0.07521534}
---- !u!114 &6647711266646986389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7631400310917634894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 315cf9bcfc5e9044f82c3b0e725eac00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TowerMerging
-  mergedTower: {fileID: 3673779739818322904, guid: 66b4e5c8551de544abb0f5dbde2f7627, type: 3}
 --- !u!54 &8701322426638432608
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7465136741889954297}
   - component: {fileID: 2792250665374446229}
   - component: {fileID: 376738951676454355}
-  - component: {fileID: 4419534140076647047}
   - component: {fileID: 3244444676796381616}
   m_Layer: 0
   m_Name: Cube
@@ -114,21 +113,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.8507853, y: 2.141017, z: 1.8341103}
   m_Center: {x: 0.09033477, y: 0.040604115, z: 0.29617023}
---- !u!114 &4419534140076647047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4157183184078854290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2528f5872e74804f9d632db410ca9ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TowerUpgrade
-  interactionText: {fileID: 0}
-  upgradeButtonsGroup: {fileID: 0}
-  playerController2: {fileID: 0}
 --- !u!65 &3244444676796381616
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -277,7 +261,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6522843234759201960}
-  - component: {fileID: 1332885367849146415}
   - component: {fileID: 7520219483103458033}
   m_Layer: 0
   m_Name: Tower
@@ -304,39 +287,6 @@ Transform:
   - {fileID: 6209507198626397479}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &1332885367849146415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5459066961500404047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67cdeebb477eb314eb2e84b999b0b48d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TrackByTag
-  playerController2: {fileID: 3535381256093394505, guid: 781cbe3794d3d8b4dbb01705d73cd168, type: 3}
-  range: 5.03
-  rotationSpeed: 5
-  smoothRotate: 1
-  damage: 10
-  timeBeforeNextAttack: 0
-  interactKey: 101
-  interactRange: 3
-  lockCursorWhenClosed: 1
-  buttonPanel: {fileID: 0}
-  extraUI: []
-  upgradeRangeButton: {fileID: 0}
-  upgradeDamageButton: {fileID: 0}
-  sellbutton: {fileID: 0}
-  rangeIncrease: 2
-  maxRange: 30
-  damageIncrease: 10
-  maxDamage: 100
-  resetWhenOutOfRange: 1
-  resetSpeed: 2
-  levelManager2: {fileID: 0}
 --- !u!54 &7520219483103458033
 Rigidbody:
   m_ObjectHideFlags: 0
