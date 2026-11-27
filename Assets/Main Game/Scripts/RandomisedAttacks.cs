@@ -18,8 +18,9 @@ public class RandomisedAttacks : MonoBehaviour
     public GameObject Indicator1;
     public GameObject Indicator2;
     public GameObject Indicator3;
-    public float timeElapsed;
-    public float timeBeforeDiscard;
+    public GameObject Indicator4;
+    public GameObject Indicator5;
+    public GameObject Indicator6;
     public Material cardRed;
     public Material cardGreen;
     public Material cardYellow;
@@ -27,6 +28,9 @@ public class RandomisedAttacks : MonoBehaviour
     public ArmSleeveHandler armSleeveHandler;
     public int numberKeyPressed;
     public bool cardIsEmpty;
+    public string[] cards = { "1", "2", "3", "4", "5", "6"};
+    public int drawRandomCard;
+    public string selectedCard;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [Header("Mana system")]
@@ -42,6 +46,9 @@ public class RandomisedAttacks : MonoBehaviour
         Indicator1.SetActive(false);
         Indicator2.SetActive(false);
         Indicator3.SetActive(false);
+        Indicator4.SetActive(false);
+        Indicator5.SetActive(false);
+        Indicator6.SetActive(false);
         currentMana = maxMana;
     }
 
@@ -63,10 +70,37 @@ public class RandomisedAttacks : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                generatedCardNumber = Random.Range(1, 4);
-                //print("Card number is " + generatedCardNumber);
-                //print("Drawn Card");
-                DrawCard();
+                drawRandomCard = Random.Range(0, cards.Length);
+                string selectedCard = cards[drawRandomCard];
+                Debug.Log(selectedCard);
+                switch(selectedCard)
+                {
+                    case "1":
+                        cardtest();
+                        Indicator1.SetActive(true);
+                        break;
+                    case "2":
+                        cardtest();
+                        Indicator2.SetActive(true); 
+                        break;
+                    case "3":
+                        cardtest();
+                        Indicator3.SetActive(true);
+                        break;
+                    case "4":
+                        cardtest();
+                        Indicator4.SetActive(true);
+                        break;
+                    case "5":
+                        cardtest();
+                        Indicator5.SetActive(true);
+                        break;
+                    case "6":
+                        cardtest();
+                        Indicator6.SetActive(true);
+                        break;
+                }
+
             }
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -161,24 +195,6 @@ public class RandomisedAttacks : MonoBehaviour
         }
         readyToShoot = true;
         readyToDrawCard = false;
-        StartCoroutine(CardHandler());
-    }
-    IEnumerator CardHandler()
-    {
-        //print("Discard Timer Started");
-        timeElapsed = 0f;
-        while (timeElapsed < timeBeforeDiscard)
-        {
-            if (readyToDrawCard == true)
-            {
-                //print("Discard Timer Disabled");
-                yield break;
-            }
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        print("Card Discarded");
-        ResetHand();
     }
     void Shoot()
     {
@@ -329,5 +345,14 @@ public class RandomisedAttacks : MonoBehaviour
         {
             manaText.text = "" + currentMana;
         }
+    }
+    void cardtest()
+    {
+        Indicator1.SetActive(false);
+        Indicator2.SetActive(false);
+        Indicator3.SetActive(false);
+        Indicator4.SetActive(false);
+        Indicator5.SetActive(false);
+        Indicator6.SetActive(false);
     }
 }
